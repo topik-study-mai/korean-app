@@ -244,7 +244,7 @@ if(SR){
   recog.onresult=(ev)=>{const results=Array.from(ev.results[0]).map(r=>r.transcript.replace(/\s/g,''));showMicResult(judge(results),results[0]);};
 }
 
-function speak(txt){if(!txt)return;const u=new SpeechSynthesisUtterance(txt);u.lang='ko-KR';var isAndroid=/Android/i.test(navigator.userAgent);u.rate=isAndroid?1.3:.85;u.pitch=1.0;speechSynthesis.speak(u);}
+function speak(txt){if(!txt)return;const u=new SpeechSynthesisUtterance(txt);u.lang='ko-KR';var isAndroid=/Android/i.test(navigator.userAgent);u.rate=isAndroid?1.6:.85;u.pitch=1.0;speechSynthesis.speak(u);}
 function judge(tr){if(!curPhrase)return false;const tg=curPhrase.s.map(s=>s.replace(/\s/g,''));return tr.some(t=>{const nt=t.replace(/\s/g,'');return tg.some(g=>nt.includes(g)||g.includes(nt));});}
 
 function showMicResult(correct,heard){
@@ -304,9 +304,10 @@ function answerQ(idx,btn,encT,encR){
   const q=quizzes[qIdx],x=q.choices[idx],t=decodeURIComponent(encT),r=decodeURIComponent(encR);
   document.querySelectorAll('.choice-btn').forEach(b=>b.disabled=true);
   if(x.c){btn.className='choice-btn correct';qScore++;document.getElementById('qRes').textContent='⭐ '+q.ok;document.getElementById('qRes').className='qres good';speak(x.t.replace(/[^\uAC00-\uD7A3\s]/g,'').trim());}
-  else{btn.className='choice-btn wrong';document.querySelectorAll('.choice-btn').forEach(b=>{const tx=b.textContent.split('\n')[0];const orig=q.choices.find(z=>z.t===tx);if(orig&&orig.c)b.className='choice-btn correct';});document.getElementById('qRes').textContent='😅 '+q.ng;document.getElementById('qRes').className='qres bad';}
+  else{btn.className='choice-btn wrong';document.querySelectorAll('.choice-btn').forEach(b=>{const tx=b.textContent.split('\n')[0];const orig=q.choices.find(z=>z.t===tx);if(orig&&orig.c)b.className='choice-btn correct';});document.getElementById('qRes').textContent='😅 '+q.ng;document.getElementById('qRes').className='qres bad';var wrongKo=t.replace(/[^가-힣\s]/g,'').trim();if(wrongKo)speak(wrongKo);}
   const mr=document.getElementById('myRow'),mb2=document.getElementById('myBubble');mr.style.display='flex';mb2.innerHTML=`<span class="bko" style="color:#555">${t}</span><span class="bro">${r}</span><button class="bspeak" onclick="speak('${t.replace(/[^\uAC00-\uD7A3\s]/g,'').trim()}')">🔊</button>`;
   document.getElementById('nxtBtn').style.display='block';
+  if(qIdx<quizzes.length){setTimeout(function(){speak(quizzes[qIdx].psays.k);},400);}
 }
 function nextQ(){qIdx++;qAnswered=false;renderQuiz();}
 
