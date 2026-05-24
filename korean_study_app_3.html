@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>🇰🇷 韓国語 旅行フレーズ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;background:#FFF9F0;min-height:100vh}
+.app{padding:1rem 0.8rem 2rem;max-width:600px;margin:0 auto}
+.header{text-align:center;margin-bottom:.8rem}
+.header h1{font-size:22px;font-weight:900;color:#FF5C5C}
+.header p{font-size:12px;color:#bbb;margin-top:2px}
+.mode-switch{display:flex;gap:7px;justify-content:center;margin-bottom:.9rem}
+.mode-btn{font-family:inherit;font-weight:800;font-size:13px;padding:8px 16px;border-radius:999px;border:2.5px solid #eee;cursor:pointer;background:#fff;color:#bbb;transition:all .18s}
+.mode-btn.active{background:#FF5C5C;color:#fff;border-color:#FF5C5C}
+.mode-btn:not(.active):hover{border-color:#FF5C5C;color:#FF5C5C}
+.category-tabs{display:flex;gap:5px;justify-content:center;margin-bottom:.8rem;flex-wrap:wrap}
+.tab-btn{font-family:inherit;font-weight:700;font-size:10px;padding:5px 10px;border-radius:999px;border:2px solid transparent;cursor:pointer;background:#fff;color:#bbb;transition:all .18s}
+.tab-btn.active{background:#FF5C5C;color:#fff;border-color:#FF5C5C}
+.tab-btn:not(.active):hover{border-color:#FF5C5C;color:#FF5C5C}
+.prog-wrap{max-width:500px;margin:0 auto .7rem}
+.prog-labels{display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:#ccc;margin-bottom:3px}
+.prog-bar{height:6px;background:#F0E8DC;border-radius:999px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,#FF5C5C,#FF9933);border-radius:999px;transition:width .4s}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:500px;margin:0 auto .9rem}
+.pcard{background:#fff;border-radius:13px;padding:10px 7px;cursor:pointer;border:2.5px solid #F0E8DC;transition:all .18s;min-height:95px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px}
+.pcard:hover{border-color:#FF5C5C;transform:translateY(-2px);box-shadow:0 4px 12px rgba(255,92,92,.1)}
+.pcard.active{border-color:#FF5C5C;background:#FFF5F5}
+.pcard .em{font-size:24px;line-height:1}
+.pcard .ko{font-size:12px;font-weight:900;color:#222;line-height:1.2}
+.pcard .ro{font-size:9px;color:#FF5C5C;font-weight:700}
+.pcard .jp{font-size:9px;color:#aaa;font-weight:600}
+.speak-panel{background:#fff;border-radius:16px;border:2.5px solid #F0E8DC;padding:14px 12px;max-width:500px;margin:0 auto .9rem;text-align:center}
+.speak-panel .pem{font-size:32px;margin-bottom:5px}
+.speak-panel .pko{font-size:22px;font-weight:900;color:#222;margin-bottom:3px}
+.speak-panel .pro{font-size:12px;color:#FF5C5C;font-weight:700;margin-bottom:2px}
+.speak-panel .pjp{font-size:12px;color:#aaa;font-weight:600;margin-bottom:10px}
+.listen-btn{font-family:inherit;font-size:12px;font-weight:700;padding:6px 16px;border-radius:999px;border:2px solid #4A90E2;color:#4A90E2;background:transparent;cursor:pointer;transition:all .15s}
+.listen-btn:hover{background:#4A90E2;color:#fff}
+.mic-btn{font-family:inherit;font-size:12px;font-weight:800;padding:10px 20px;border-radius:999px;border:none;cursor:pointer;background:#FF5C5C;color:#fff;transition:all .18s;display:inline-flex;align-items:center;gap:5px;box-shadow:0 3px 10px rgba(255,92,92,.22);margin-top:8px}
+.mic-btn:hover{background:#e84040;transform:scale(1.04)}
+.mic-btn.listening{background:#FF9933;animation:pulse 1.2s infinite}
+.mic-btn.success{background:#22C55E}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,153,51,.5)}70%{box-shadow:0 0 0 10px rgba(255,153,51,0)}100%{box-shadow:0 0 0 0 rgba(255,153,51,0)}}
+.feedback{margin-top:8px;min-height:24px;font-size:11px;font-weight:700;color:#888}
+.feedback.good{color:#22C55E}.feedback.try{color:#FF9933}.feedback.info{color:#bbb}
+.stars{display:flex;justify-content:center;gap:3px;margin-top:4px;font-size:16px}
+.quiz-view{max-width:500px;margin:0 auto}
+.quiz-hdr{text-align:center;margin-bottom:.8rem}
+.quiz-hdr h2{font-size:16px;font-weight:900;color:#FF5C5C}
+.quiz-hdr p{font-size:12px;color:#bbb}
+.sit-box{background:#fff;border-radius:11px;border:2px solid #F0E8DC;padding:9px 12px;margin-bottom:.7rem;font-size:12px;color:#555;font-weight:700;line-height:1.6;white-space:pre-line}
+.sit-box strong{color:#FF5C5C;font-size:12px;display:block;margin-bottom:2px}
+.chat-win-label{font-size:10px;font-weight:800;color:#4A90E2;margin-bottom:-.4rem}
+.chat-win{background:#B2CFF8;border-radius:16px;padding:12px 10px;min-height:200px;display:flex;flex-direction:column;gap:9px;margin-bottom:.8rem}
+.brow{display:flex;align-items:flex-end;gap:6px}
+.brow.right{flex-direction:row-reverse}
+.avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.av-partner{background:#FF5C5C}
+.av-me{background:#4A90E2}
+.bubble{max-width:75%;padding:8px 11px;border-radius:16px;font-size:11px;font-weight:700;line-height:1.5}
+.bubble.left{background:#fff;border-bottom-left-radius:3px;color:#222}
+.bubble.right{background:#FFE066;border-bottom-right-radius:3px;color:#555}
+.bko{font-size:14px;font-weight:900;color:#222;display:block;margin-bottom:1px}
+.bro{font-size:9px;color:#FF5C5C;font-weight:700;display:block}
+.bjp{font-size:9px;color:#aaa;display:block}
+.bspeak{background:none;border:none;cursor:pointer;font-size:13px;padding:0;margin-left:4px;vertical-align:middle;opacity:.7;transition:opacity .15s}
+.bspeak:hover{opacity:1}
+.choices{display:flex;flex-direction:column;gap:7px;margin-bottom:.7rem}
+.choice-btn{font-family:inherit;font-weight:800;font-size:12px;padding:10px 13px;border-radius:11px;border:2.5px solid #F0E8DC;background:#fff;color:#333;cursor:pointer;text-align:left;transition:all .18s;line-height:1.4}
+.choice-btn:hover{border-color:#4A90E2;background:#F0F5FF}
+.choice-btn.correct{border-color:#22C55E;background:#F0FFF5;color:#16A34A}
+.choice-btn.wrong{border-color:#EF4444;background:#FFF5F5;color:#DC2626}
+.choice-btn:disabled{cursor:default}
+.qres{text-align:center;padding:8px;font-size:13px;font-weight:800;min-height:32px}
+.qres.good{color:#22C55E}.qres.bad{color:#EF4444}
+.next-btn{font-family:inherit;font-weight:800;font-size:12px;padding:10px;border-radius:999px;border:none;background:#FF5C5C;color:#fff;cursor:pointer;width:100%;box-shadow:0 3px 8px rgba(255,92,92,.18);transition:all .18s;display:none}
+.next-btn:hover{background:#e84040}
+.qscore{text-align:center;font-size:11px;color:#bbb;font-weight:700;margin-top:.4rem}
+.finish{text-align:center;padding:1.5rem 1rem}
+.finish .big{font-size:44px;margin-bottom:.4rem}
+.finish h3{font-size:18px;font-weight:900;color:#FF5C5C;margin-bottom:.4rem}
+.finish p{font-size:13px;color:#888;margin-bottom:1rem}
+.retry-btn{font-family:inherit;font-weight:800;font-size:13px;padding:11px 24px;border-radius:999px;border:none;background:#FF5C5C;color:#fff;cursor:pointer}
+.no-mic{background:#FFF3CD;border:2px solid #FFB800;border-radius:10px;padding:8px 12px;font-size:11px;font-weight:700;color:#996600;text-align:center;max-width:500px;margin:0 auto .8rem;display:none}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <h1>🇰🇷 韓国語 旅行フレーズ</h1>
+    <p>声に出して韓国語を覚えよう！</p>
+  </div>
+  <div class="mode-switch">
+    <button class="mode-btn active" id="btnLearn" onclick="setMode('learn')">📚 覚える</button>
+    <button class="mode-btn" id="btnQuiz" onclick="setMode('quiz')">💬 会話クイズ</button>
+  </div>
+  <div class="no-mic" id="noMicMsg">⚠️ 音声認識はChromeブラウザで使えます。Chromeで開いてください！</div>
+
+  <!-- 学習画面 -->
+  <div id="learnView">
+    <div class="category-tabs" id="catTabs"></div>
+    <div class="prog-wrap">
+      <div class="prog-labels"><span id="progTxt">0/0 クリア</span><span id="progPct">0%</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    </div>
+    <div class="card-grid" id="cardGrid"></div>
+    <div class="speak-panel" id="speakPanel" style="display:none">
+      <div class="pem" id="pEm"></div>
+      <div class="pko" id="pKo"></div>
+      <div class="pro" id="pRo"></div>
+      <div class="pjp" id="pJp"></div>
+      <button class="listen-btn" id="listenBtn">🔊 発音を聞く</button><br>
+      <button class="mic-btn" id="micBtn">🎤 まねして言ってみよう！</button>
+      <div class="feedback" id="feedback"></div>
+      <div class="stars" id="stars"></div>
+    </div>
+  </div>
+
+  <!-- クイズ画面 -->
+  <div id="quizView" style="display:none">
+    <div class="quiz-view" id="quizInner"></div>
+  </div>
+</div>
+
+<script>
+const P={
+挨拶:[
+  {e:'👋',k:'안녕하세요',r:'アンニョンハセヨ',j:'こんにちは',s:['안녕하세요','안녕']},
+  {e:'🙏',k:'감사합니다',r:'カムサハムニダ',j:'ありがとうございます',s:['감사합니다','감사']},
+  {e:'😅',k:'죄송합니다',r:'チェソンハムニダ',j:'申し訳ありません',s:['죄송합니다','죄송']},
+  {e:'🌅',k:'안녕히 가세요',r:'アンニョンヒ カセヨ',j:'さようなら（相手が去るとき）',s:['안녕히 가세요','가세요']},
+  {e:'🚶',k:'안녕히 계세요',r:'アンニョンヒ ケセヨ',j:'さようなら（自分が去るとき）',s:['안녕히 계세요','계세요']},
+  {e:'🤝',k:'만나서 반가워요',r:'マンナソ パンガウォヨ',j:'お会いできて嬉しいです',s:['반가워요','만나서']},
+  {e:'💬',k:'잘 지냈어요?',r:'チャル チネッソヨ',j:'お元気でしたか？',s:['지냈어요','잘']},
+  {e:'⏳',k:'오랜만이에요',r:'オレンマニエヨ',j:'お久しぶりです',s:['오랜만이에요','오랜만']},
+  {e:'😊',k:'어떻게 지내세요?',r:'オットケ チネセヨ',j:'いかがお過ごしですか？',s:['어떻게','지내세요']},
+  {e:'☀️',k:'행복한 하루 되세요',r:'ヘンボカン ハル ドェセヨ',j:'良い一日を',s:['행복한','하루']},
+],
+ホテル:[
+  {e:'🏨',k:'방 예약했습니다',r:'パン ヨヤクヘッスムニダ',j:'部屋を予約しました',s:['예약','방']},
+  {e:'⏰',k:'체크아웃 시간이 언제인가요?',r:'チェクアウト シガニ オンジェインガヨ',j:'チェックアウトの時間は？',s:['체크아웃','시간']},
+  {e:'📶',k:'와이파이 있나요?',r:'ワイパイ インナヨ',j:'Wi-Fiはありますか？',s:['와이파이','있나요']},
+  {e:'🍳',k:'조식은 몇 시부터예요?',r:'ジョシクン ミョッ シブトエヨ',j:'朝食は何時からですか？',s:['조식','시']},
+  {e:'🔑',k:'열쇠를 하나 더 받을 수 있나요?',r:'ヨルセルル ハナ ト パドゥル ス インナヨ',j:'鍵をもう一つください',s:['열쇠','하나']},
+  {e:'🚿',k:'수건을 더 주세요',r:'スゴヌル ト チュセヨ',j:'タオルを追加でください',s:['수건','주세요']},
+  {e:'🔄',k:'방을 바꿀 수 있나요?',r:'パンウル パックル ス インナヨ',j:'部屋を変更できますか？',s:['방을','바꿀']},
+  {e:'🍽️',k:'식당은 어디에 있나요?',r:'シクタンウン オディエ インナヨ',j:'レストランはどこですか？',s:['식당','어디']},
+  {e:'🚪',k:'체크아웃 할게요',r:'チェクアウト ハルケヨ',j:'チェックアウトをお願いします',s:['체크아웃','할게요']},
+  {e:'🚌',k:'공항까지 셔틀버스 있나요?',r:'コンハンカジ ショトゥルボス インナヨ',j:'空港行きシャトルバスは？',s:['공항','셔틀']},
+],
+交通:[
+  {e:'🚇',k:'지하철 역은 어디에 있나요?',r:'ジハチョル ヨゲン オディエ インナヨ',j:'地下鉄の駅はどこですか？',s:['지하철','역']},
+  {e:'🚌',k:'버스는 몇 시에 출발해요?',r:'ポスヌン ミョッ シエ チュルバルヘヨ',j:'バスは何時に出発しますか？',s:['버스','출발']},
+  {e:'🚕',k:'택시 좀 불러주세요',r:'テクシ ジョム プロジュセヨ',j:'タクシーを呼んでください',s:['택시','불러']},
+  {e:'📍',k:'이 주소로 가고 싶어요',r:'イ チュソロ カゴ シポヨ',j:'この住所に行きたいです',s:['주소','가고']},
+  {e:'💰',k:'요금은 얼마예요?',r:'ヨグムン オルマエヨ',j:'運賃はいくらですか？',s:['요금','얼마']},
+  {e:'🔃',k:'환승은 어디에서 하나요?',r:'ファンソンウン オディエソ ハナヨ',j:'乗り換えはどこですか？',s:['환승','어디']},
+  {e:'🚉',k:'가장 가까운 역은 어디에 있나요?',r:'カジャン カッカウン ヨゲン オディエ インナヨ',j:'最寄りの駅はどこですか？',s:['가까운','역']},
+  {e:'🅿️',k:'가까운 주차장은 어디에 있나요?',r:'カッカウン チュチャジャンウン オディエ インナヨ',j:'近くの駐車場はどこですか？',s:['주차장','어디']},
+],
+食事:[
+  {e:'📋',k:'메뉴판 주세요',r:'メニュパン チュセヨ',j:'メニューをください',s:['메뉴판','주세요']},
+  {e:'🍽️',k:'이거 주문할게요',r:'イゴ チュムナルケヨ',j:'これを注文します',s:['주문','이거']},
+  {e:'💧',k:'물 좀 주세요',r:'ムル ジョム チュセヨ',j:'水をください',s:['물','주세요']},
+  {e:'🌶️',k:'맵지 않은 음식 있나요?',r:'メプジ アヌン ウムシク インナヨ',j:'辛くない料理はありますか？',s:['맵지','음식']},
+  {e:'🍚',k:'밥 좀 더 주세요',r:'パプ ジョム ト チュセヨ',j:'ご飯を追加でください',s:['밥','더']},
+  {e:'🤧',k:'알레르기가 있어요',r:'アルレルギガ イッソヨ',j:'アレルギーがあります',s:['알레르기','있어요']},
+  {e:'🧾',k:'계산해 주세요',r:'ケサンヘ チュセヨ',j:'お会計をお願いします',s:['계산','주세요']},
+  {e:'📄',k:'영수증 주세요',r:'ヨンスジュン チュセヨ',j:'領収書をください',s:['영수증','주세요']},
+],
+カフェ:[
+  {e:'☕',k:'커피 한 잔 주세요',r:'コピ ハン チャン チュセヨ',j:'コーヒーを1杯ください',s:['커피','한 잔']},
+  {e:'🎂',k:'이 케이크는 뭐예요?',r:'イ ケイクヌン ムオエヨ',j:'このケーキは何ですか？',s:['케이크','뭐예요']},
+  {e:'🪑',k:'이 자리 비어 있나요?',r:'イ チャリ ピオ インナヨ',j:'この席は空いていますか？',s:['자리','비어']},
+  {e:'📶',k:'와이파이 비밀번호 좀 알려주세요',r:'ワイパイ ビミルボノ ジョム アリョジュセヨ',j:'Wi-Fiのパスワードを教えてください',s:['비밀번호','와이파이']},
+  {e:'🔥',k:'뜨거운 커피 있나요?',r:'トゴウン コピ インナヨ',j:'温かいコーヒーはありますか？',s:['뜨거운','커피']},
+  {e:'⭐',k:'추천하는 디저트는 뭐예요?',r:'チュチョハヌン ディジョトゥヌン ムオエヨ',j:'おすすめのデザートは？',s:['추천','디저트']},
+],
+旅行用品:[
+  {e:'🧳',k:'여행 가방',r:'ヨヘン カバン',j:'スーツケース',s:['여행','가방']},
+  {e:'🛂',k:'여권',r:'ヨグォン',j:'パスポート',s:['여권']},
+  {e:'🗺️',k:'지도',r:'ジド',j:'地図',s:['지도']},
+  {e:'📷',k:'카메라',r:'カメラ',j:'カメラ',s:['카메라']},
+  {e:'🔌',k:'충전기',r:'チュンジョンギ',j:'充電器',s:['충전기']},
+  {e:'🕶️',k:'선크림',r:'ソンクリム',j:'日焼け止め',s:['선크림']},
+],
+緊急:[
+  {e:'🆘',k:'도와주세요!',r:'トワジュセヨ',j:'助けてください！',s:['도와주세요','도와']},
+  {e:'🏥',k:'병원이 어디예요?',r:'ビョンウォニ オディエヨ',j:'病院はどこですか？',s:['병원','어디']},
+  {e:'👮',k:'경찰을 불러주세요',r:'キョンチャルル プロジュセヨ',j:'警察を呼んでください',s:['경찰','불러']},
+  {e:'📞',k:'전화해 주세요',r:'チョナヘ チュセヨ',j:'電話してください',s:['전화','주세요']},
+  {e:'💊',k:'약국이 어디예요?',r:'ヤックギ オディエヨ',j:'薬局はどこですか？',s:['약국','어디']},
+  {e:'🤒',k:'아파요',r:'アパヨ',j:'具合が悪いです',s:['아파요']},
+],
+感情:[
+  {e:'😄',k:'정말 좋아요!',r:'チョンマル チョアヨ',j:'本当に最高！',s:['좋아요','정말']},
+  {e:'😢',k:'슬퍼요',r:'スルポヨ',j:'悲しいです',s:['슬퍼요']},
+  {e:'😲',k:'놀랐어요!',r:'ノルラッソヨ',j:'驚きました！',s:['놀랐어요']},
+  {e:'😍',k:'너무 예뻐요!',r:'ノム イェッポヨ',j:'とてもきれいです！',s:['예뻐요','너무']},
+  {e:'😂',k:'재미있어요!',r:'チェミイッソヨ',j:'楽しいです！',s:['재미있어요','재미']},
+  {e:'😰',k:'무서워요',r:'ムソウォヨ',j:'怖いです',s:['무서워요']},
+  {e:'🥱',k:'피곤해요',r:'ピゴネヨ',j:'疲れました',s:['피곤해요']},
+  {e:'🤩',k:'최고예요!',r:'チェゴエヨ',j:'最高です！',s:['최고예요','최고']},
+]
+};
+
+const cats=[
+  {id:'挨拶',l:'👋 挨拶'},
+  {id:'ホテル',l:'🏨 ホテル'},
+  {id:'交通',l:'🚇 交通'},
+  {id:'食事',l:'🍽️ 食事'},
+  {id:'カフェ',l:'☕ カフェ'},
+  {id:'旅行用品',l:'🧳 旅行用品'},
+  {id:'緊急',l:'🆘 緊急'},
+  {id:'感情',l:'😄 感情'},
+];
+
+const quizzes=[
+  {sit:'✈️ 韓国の空港に到着！\nはじめて会ったガイドさんに挨拶しよう。',av:'🧑‍✈️',psays:{k:'안녕하세요! 만나서 반가워요!',r:'アンニョンハセヨ！マンナソパンガウォヨ！',j:'こんにちは！お会いできて嬉しいです！'},prompt:'「お会いできて嬉しいです」と返してみよう！',choices:[{t:'만나서 반가워요! 😊',r:'マンナソ パンガウォヨ',c:true},{t:'안녕히 가세요! 🌅',r:'アンニョンヒ カセヨ',c:false},{t:'오랜만이에요 ⏳',r:'オレンマニエヨ',c:false}],ok:'완전 좋아요！（とても嬉しいです！）',ng:'それは「さようなら」だよ。만나서 반가워요！'},
+  {sit:'🏪 コンビニで値段を確認したい！\n店員さんに声をかけてみよう。',av:'🧑‍💼',psays:{k:'어서오세요!',r:'オソオセヨ！',j:'いらっしゃいませ！'},prompt:'「これはいくらですか？」と聞いてみよう！',choices:[{t:'이거 뭐예요? 🤔',r:'イゴ ムオエヨ',c:false},{t:'이거 얼마예요? 💰',r:'イゴ オルマエヨ',c:true},{t:'영수증 주세요! 🧾',r:'ヨンスジュン チュセヨ',c:false}],ok:'맞아요！（その通り！）上手！',ng:'「いくら」は얼마だよ！'},
+  {sit:'🏨 ホテルのフロントに到着！\n事前予約していることを伝えよう。',av:'👩‍💼',psays:{k:'안녕하세요!',r:'アンニョンハセヨ！',j:'こんにちは！'},prompt:'「部屋を予約しました」と伝えてみよう！',choices:[{t:'방 예약했습니다 🏨',r:'パン ヨヤクヘッスムニダ',c:true},{t:'와이파이 있나요? 📶',r:'ワイパイ インナヨ',c:false},{t:'체크아웃 할게요 🚪',r:'チェクアウト ハルケヨ',c:false}],ok:'네！（はい！）完璧です！',ng:'「予約」は예약！방 예약했습니다！'},
+  {sit:'🚇 地下鉄の駅を探している！\n係員に場所を聞いてみよう。',av:'👮',psays:{k:'무엇을 도와드릴까요?',r:'ムオスル トワドゥリルカヨ？',j:'何かお手伝いできますか？'},prompt:'「地下鉄の駅はどこですか？」と聞こう！',choices:[{t:'지하철 역은 어디에 있나요? 🚇',r:'ジハチョル ヨゲン オディエ インナヨ',c:true},{t:'택시 좀 불러주세요 🚕',r:'テクシ ジョム プロジュセヨ',c:false},{t:'요금은 얼마예요? 💰',r:'ヨグムン オルマエヨ',c:false}],ok:'정확해요！（正確です！）',ng:'それはタクシーだよ！지하철 역은 어디？'},
+  {sit:'☕ カフェに入店！\nコーヒーを注文してみよう。',av:'🧑‍🍳',psays:{k:'어서오세요! 주문하시겠어요?',r:'オソオセヨ！チュムナシゲッソヨ？',j:'いらっしゃいませ！ご注文はいかがですか？'},prompt:'「コーヒーを1杯ください」と注文しよう！',choices:[{t:'이 자리 비어 있나요? 🪑',r:'イ チャリ ピオ インナヨ',c:false},{t:'커피 한 잔 주세요 ☕',r:'コピ ハン チャン チュセヨ',c:true},{t:'와이파이 비밀번호 알려주세요 📶',r:'ワイパイ ビミルボノ アリョジュセヨ',c:false}],ok:'좋아요！（いいですね！）上手に注文できた！',ng:'それは席の質問だよ！커피 한 잔 주세요！'},
+  {sit:'🍽️ 食事を終えてお会計！\n店員さんに声をかけよう。',av:'🧑‍🍳',psays:{k:'맛있으셨나요?',r:'マシッスションナヨ？',j:'お食事はいかがでしたか？'},prompt:'「お会計をお願いします」と伝えよう！',choices:[{t:'메뉴판 주세요 📋',r:'メニュパン チュセヨ',c:false},{t:'물 좀 주세요 💧',r:'ムル ジョム チュセヨ',c:false},{t:'계산해 주세요 🧾',r:'ケサンヘ チュセヨ',c:true}],ok:'정말 잘했어요！（よくできました！）',ng:'それはメニューの注文だよ！계산해 주세요！'},
+  {sit:'🆘 体の具合が悪くなった！\n近くの人に助けを求めよう。',av:'👩',psays:{k:'괜찮아요?',r:'クェンチャナヨ？',j:'大丈夫ですか？'},prompt:'「病院はどこですか？」と聞こう！',choices:[{t:'도와주세요! 🆘',r:'トワジュセヨ',c:false},{t:'병원이 어디예요? 🏥',r:'ビョンウォニ オディエヨ',c:true},{t:'아파요 💊',r:'アパヨ',c:false}],ok:'맞아요！（正解！）병원＝病院！',ng:'「病院」は병원！병원이 어디예요？'},
+  {sit:'😍 観光スポットがとても美しかった！\n感想を伝えてみよう。',av:'🧑‍✈️',psays:{k:'여기 어때요?',r:'ヨギ オッテヨ？',j:'ここはいかがですか？'},prompt:'「とてもきれいです！」と感想を言おう！',choices:[{t:'재미있어요! 😂',r:'チェミイッソヨ',c:false},{t:'무서워요 😰',r:'ムソウォヨ',c:false},{t:'너무 예뻐요! 😍',r:'ノム イェッポヨ',c:true}],ok:'와！（わあ！）上手に気持ちが伝えられたね！',ng:'예뻐요＝きれい！너무 예뻐요！'},
+];
+
+let curCat='挨拶',curPhrase=null,cleared={};
+cats.forEach(c=>{cleared[c.id]=new Set()});
+let qIdx=0,qScore=0,qAnswered=false;
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(!SR) document.getElementById('noMicMsg').style.display='block';
+
+let recog,recogOn=false;
+if(SR){
+  recog=new SR();recog.lang='ko-KR';recog.interimResults=false;recog.maxAlternatives=5;
+  recog.onstart=()=>{recogOn=true;const mb=document.getElementById('micBtn');if(mb){mb.className='mic-btn listening';mb.textContent='🔴 聞いています…';}const fb=document.getElementById('feedback');if(fb){fb.textContent='話しかけてみよう！';fb.className='feedback info';}};
+  recog.onend=()=>{recogOn=false;const mb=document.getElementById('micBtn');if(mb&&mb.className.includes('listening')){mb.className='mic-btn';mb.textContent='🎤 まねして言ってみよう！';}};
+  recog.onerror=()=>{recogOn=false;const mb=document.getElementById('micBtn');if(mb){mb.className='mic-btn';mb.textContent='🎤 まねして言ってみよう！';}const fb=document.getElementById('feedback');if(fb){fb.textContent='もう一度試してみよう！';fb.className='feedback try';}};
+  recog.onresult=(ev)=>{const results=Array.from(ev.results[0]).map(r=>r.transcript.replace(/\s/g,''));showMicResult(judge(results),results[0]);};
+}
+
+function speak(txt){if(!txt)return;const u=new SpeechSynthesisUtterance(txt);u.lang='ko-KR';var isAndroid=/Android/i.test(navigator.userAgent);u.rate=isAndroid?1.3:.85;u.pitch=1.0;speechSynthesis.speak(u);}
+function judge(tr){if(!curPhrase)return false;const tg=curPhrase.s.map(s=>s.replace(/\s/g,''));return tr.some(t=>{const nt=t.replace(/\s/g,'');return tg.some(g=>nt.includes(g)||g.includes(nt));});}
+
+function showMicResult(correct,heard){
+  const mb=document.getElementById('micBtn'),fb=document.getElementById('feedback'),st=document.getElementById('stars');
+  if(correct){mb.className='mic-btn success';mb.textContent='✅ 正解！';fb.textContent='すごい！上手に言えたよ！';fb.className='feedback good';st.innerHTML='⭐⭐⭐';cleared[curCat].add(curPhrase._idx);renderProgress();renderCards();setTimeout(()=>{mb.className='mic-btn';mb.textContent='🎤 もう一回！';},2000);}
+  else{mb.className='mic-btn';mb.textContent='🎤 もう一回！';fb.textContent=`もう一度！聞こえたのは：「${heard||'？'}」`;fb.className='feedback try';st.innerHTML='';}
+}
+
+function setMode(m){
+  document.getElementById('learnView').style.display=m==='learn'?'block':'none';
+  document.getElementById('quizView').style.display=m==='quiz'?'block':'none';
+  document.getElementById('btnLearn').className='mode-btn'+(m==='learn'?' active':'');
+  document.getElementById('btnQuiz').className='mode-btn'+(m==='quiz'?' active':'');
+  if(m==='quiz'){qIdx=0;qScore=0;qAnswered=false;renderQuiz();}
+}
+
+function renderTabs(){
+  const el=document.getElementById('catTabs');el.innerHTML='';
+  cats.forEach(c=>{const b=document.createElement('button');b.className='tab-btn'+(c.id===curCat?' active':'');b.textContent=c.l;b.onclick=()=>{curCat=c.id;curPhrase=null;document.getElementById('speakPanel').style.display='none';renderAll();};el.appendChild(b);});
+}
+function renderCards(){
+  const g=document.getElementById('cardGrid');g.innerHTML='';
+  P[curCat].forEach((p,i)=>{const d=cleared[curCat].has(i);const c=document.createElement('div');c.className='pcard'+(curPhrase===p?' active':'');c.innerHTML=`<div class="em">${d?'⭐':p.e}</div><div class="ko">${p.k}</div><div class="ro">${p.r}</div><div class="jp">${p.j}</div>`;c.onclick=()=>selectPhrase(p,i);g.appendChild(c);});
+}
+function renderProgress(){
+  const tot=Object.values(P).reduce((a,b)=>a+b.length,0),done=Object.values(cleared).reduce((a,b)=>a+b.size,0),pct=tot?Math.round(done/tot*100):0;
+  document.getElementById('progTxt').textContent=`${done}/${tot} クリア`;document.getElementById('progPct').textContent=`${pct}%`;document.getElementById('progFill').style.width=pct+'%';
+}
+function renderAll(){renderTabs();renderCards();renderProgress();}
+function selectPhrase(p,idx){
+  curPhrase=p;curPhrase._idx=idx;
+  document.getElementById('speakPanel').style.display='block';
+  document.getElementById('pEm').textContent=p.e;document.getElementById('pKo').textContent=p.k;document.getElementById('pRo').textContent=p.r;document.getElementById('pJp').textContent=p.j;
+  document.getElementById('feedback').textContent='↑ まねして声に出してみよう！';document.getElementById('feedback').className='feedback info';document.getElementById('stars').innerHTML='';
+  document.getElementById('micBtn').className='mic-btn';document.getElementById('micBtn').textContent='🎤 まねして言ってみよう！';
+  renderCards();document.getElementById('speakPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+document.getElementById('listenBtn').onclick=()=>{if(curPhrase)speak(curPhrase.k);};
+document.getElementById('micBtn').onclick=()=>{
+  if(!SR){document.getElementById('feedback').textContent='Chromeで開いてください！';return;}
+  if(recogOn){recog.stop();return;}
+  if(!curPhrase){document.getElementById('feedback').textContent='カードをタップしてください！';document.getElementById('feedback').className='feedback info';return;}
+  recog.start();
+};
+
+function renderQuiz(){
+  const c=document.getElementById('quizInner');
+  if(qIdx>=quizzes.length){const pct=Math.round(qScore/quizzes.length*100);const msg=pct>=80?'完璧！🎉':pct>=50?'なかなか良いぞ！😊':'もう一回挑戦！💪';c.innerHTML=`<div class="finish"><div class="big">${pct>=80?'🏆':pct>=50?'⭐':'🔄'}</div><h3>${msg}</h3><p>${quizzes.length}問中 ${qScore}問 正解（${pct}%）</p><button class="retry-btn" onclick="qIdx=0;qScore=0;qAnswered=false;renderQuiz()">🔁 もう一回やる</button></div>`;return;}
+  const q=quizzes[qIdx];
+  const sh=[...q.choices].sort(()=>Math.random()-.5);
+  const ch=sh.map(x=>{const oi=q.choices.indexOf(x);return `<button class="choice-btn" onclick="answerQ(${oi},this,'${encodeURIComponent(x.t)}','${encodeURIComponent(x.r)}')">${x.t}<br><span style="font-size:9px;color:#FF5C5C;font-weight:700">${x.r}</span></button>`;}).join('');
+  c.innerHTML=`<div class="quiz-hdr"><h2>💬 会話クイズ ${qIdx+1}/${quizzes.length}</h2><p>何と言う？選んでみよう！</p></div><div class="sit-box"><strong>📍 状況</strong>${q.sit}</div><div class="chat-win-label">🇰🇷 カンナムくん</div><div class="chat-win" id="chatWin"><div class="brow"><div class="avatar av-partner">${q.av}</div><div class="bubble left"><span class="bko">${q.psays.k}</span><span class="bro">${q.psays.r}</span><span class="bjp">${q.psays.j}</span><button class="bspeak" onclick="speak('${q.psays.k.replace(/'/g,"\\'")}')">🔊</button></div></div><div class="brow right" id="myRow" style="display:none"><div class="bubble right" id="myBubble"></div><div class="avatar av-me">😊</div></div></div><div style="font-size:11px;color:#888;font-weight:700;margin-bottom:.5rem;text-align:center">${q.prompt}</div><div class="choices" id="choicesDiv">${ch}</div><div class="qres" id="qRes"></div><button class="next-btn" id="nxtBtn" onclick="nextQ()">次へ →</button><div class="qscore">スコア：${qScore} / ${qIdx} 正解</div>`;
+}
+
+function answerQ(idx,btn,encT,encR){
+  if(qAnswered)return;qAnswered=true;
+  const q=quizzes[qIdx],x=q.choices[idx],t=decodeURIComponent(encT),r=decodeURIComponent(encR);
+  document.querySelectorAll('.choice-btn').forEach(b=>b.disabled=true);
+  if(x.c){btn.className='choice-btn correct';qScore++;document.getElementById('qRes').textContent='⭐ '+q.ok;document.getElementById('qRes').className='qres good';speak(x.t.replace(/[^\uAC00-\uD7A3\s]/g,'').trim());}
+  else{btn.className='choice-btn wrong';document.querySelectorAll('.choice-btn').forEach(b=>{const tx=b.textContent.split('\n')[0];const orig=q.choices.find(z=>z.t===tx);if(orig&&orig.c)b.className='choice-btn correct';});document.getElementById('qRes').textContent='😅 '+q.ng;document.getElementById('qRes').className='qres bad';}
+  const mr=document.getElementById('myRow'),mb2=document.getElementById('myBubble');mr.style.display='flex';mb2.innerHTML=`<span class="bko" style="color:#555">${t}</span><span class="bro">${r}</span><button class="bspeak" onclick="speak('${t.replace(/[^\uAC00-\uD7A3\s]/g,'').trim()}')">🔊</button>`;
+  document.getElementById('nxtBtn').style.display='block';
+}
+function nextQ(){qIdx++;qAnswered=false;renderQuiz();}
+
+renderAll();
+selectPhrase(P['挨拶'][0],0);
+</script>
+</body>
+</html>
