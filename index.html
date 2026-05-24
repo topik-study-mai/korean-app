@@ -105,7 +105,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Hiragino Sans','Hi
       <div class="prog-labels"><span id="progTxt">0/0 クリア</span><span id="progPct">0%</span></div>
       <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     </div>
-    <div class="card-grid" id="cardGrid"></div>
     <div class="speak-panel" id="speakPanel" style="display:none">
       <div class="pem" id="pEm"></div>
       <div class="pko" id="pKo"></div>
@@ -116,6 +115,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Hiragino Sans','Hi
       <div class="feedback" id="feedback"></div>
       <div class="stars" id="stars"></div>
     </div>
+    <div class="card-grid" id="cardGrid"></div>
   </div>
 
   <!-- クイズ画面 -->
@@ -218,14 +218,14 @@ const cats=[
 ];
 
 const quizzes=[
-  {sit:'✈️ 韓国の空港に到着！\nはじめて会ったガイドさんに挨拶しよう。',av:'🧑‍✈️',psays:{k:'안녕하세요! 만나서 반가워요!',r:'アンニョンハセヨ！マンナソパンガウォヨ！',j:'こんにちは！お会いできて嬉しいです！'},prompt:'「お会いできて嬉しいです」と返してみよう！',choices:[{t:'만나서 반가워요! 😊',r:'マンナソ パンガウォヨ',c:true},{t:'안녕히 가세요! 🌅',r:'アンニョンヒ カセヨ',c:false},{t:'오랜만이에요 ⏳',r:'オレンマニエヨ',c:false}],ok:'완전 좋아요！（とても嬉しいです！）',ng:'それは「さようなら」だよ。만나서 반가워요！'},
-  {sit:'🏪 コンビニで値段を確認したい！\n店員さんに声をかけてみよう。',av:'🧑‍💼',psays:{k:'어서오세요!',r:'オソオセヨ！',j:'いらっしゃいませ！'},prompt:'「これはいくらですか？」と聞いてみよう！',choices:[{t:'이거 뭐예요? 🤔',r:'イゴ ムオエヨ',c:false},{t:'이거 얼마예요? 💰',r:'イゴ オルマエヨ',c:true},{t:'영수증 주세요! 🧾',r:'ヨンスジュン チュセヨ',c:false}],ok:'맞아요！（その通り！）上手！',ng:'「いくら」は얼마だよ！'},
-  {sit:'🏨 ホテルのフロントに到着！\n事前予約していることを伝えよう。',av:'👩‍💼',psays:{k:'안녕하세요!',r:'アンニョンハセヨ！',j:'こんにちは！'},prompt:'「部屋を予約しました」と伝えてみよう！',choices:[{t:'방 예약했습니다 🏨',r:'パン ヨヤクヘッスムニダ',c:true},{t:'와이파이 있나요? 📶',r:'ワイパイ インナヨ',c:false},{t:'체크아웃 할게요 🚪',r:'チェクアウト ハルケヨ',c:false}],ok:'네！（はい！）完璧です！',ng:'「予約」は예약！방 예약했습니다！'},
-  {sit:'🚇 地下鉄の駅を探している！\n係員に場所を聞いてみよう。',av:'👮',psays:{k:'무엇을 도와드릴까요?',r:'ムオスル トワドゥリルカヨ？',j:'何かお手伝いできますか？'},prompt:'「地下鉄の駅はどこですか？」と聞こう！',choices:[{t:'지하철 역은 어디에 있나요? 🚇',r:'ジハチョル ヨゲン オディエ インナヨ',c:true},{t:'택시 좀 불러주세요 🚕',r:'テクシ ジョム プロジュセヨ',c:false},{t:'요금은 얼마예요? 💰',r:'ヨグムン オルマエヨ',c:false}],ok:'정확해요！（正確です！）',ng:'それはタクシーだよ！지하철 역은 어디？'},
-  {sit:'☕ カフェに入店！\nコーヒーを注文してみよう。',av:'🧑‍🍳',psays:{k:'어서오세요! 주문하시겠어요?',r:'オソオセヨ！チュムナシゲッソヨ？',j:'いらっしゃいませ！ご注文はいかがですか？'},prompt:'「コーヒーを1杯ください」と注文しよう！',choices:[{t:'이 자리 비어 있나요? 🪑',r:'イ チャリ ピオ インナヨ',c:false},{t:'커피 한 잔 주세요 ☕',r:'コピ ハン チャン チュセヨ',c:true},{t:'와이파이 비밀번호 알려주세요 📶',r:'ワイパイ ビミルボノ アリョジュセヨ',c:false}],ok:'좋아요！（いいですね！）上手に注文できた！',ng:'それは席の質問だよ！커피 한 잔 주세요！'},
-  {sit:'🍽️ 食事を終えてお会計！\n店員さんに声をかけよう。',av:'🧑‍🍳',psays:{k:'맛있으셨나요?',r:'マシッスションナヨ？',j:'お食事はいかがでしたか？'},prompt:'「お会計をお願いします」と伝えよう！',choices:[{t:'메뉴판 주세요 📋',r:'メニュパン チュセヨ',c:false},{t:'물 좀 주세요 💧',r:'ムル ジョム チュセヨ',c:false},{t:'계산해 주세요 🧾',r:'ケサンヘ チュセヨ',c:true}],ok:'정말 잘했어요！（よくできました！）',ng:'それはメニューの注文だよ！계산해 주세요！'},
-  {sit:'🆘 体の具合が悪くなった！\n近くの人に助けを求めよう。',av:'👩',psays:{k:'괜찮아요?',r:'クェンチャナヨ？',j:'大丈夫ですか？'},prompt:'「病院はどこですか？」と聞こう！',choices:[{t:'도와주세요! 🆘',r:'トワジュセヨ',c:false},{t:'병원이 어디예요? 🏥',r:'ビョンウォニ オディエヨ',c:true},{t:'아파요 💊',r:'アパヨ',c:false}],ok:'맞아요！（正解！）병원＝病院！',ng:'「病院」は병원！병원이 어디예요？'},
-  {sit:'😍 観光スポットがとても美しかった！\n感想を伝えてみよう。',av:'🧑‍✈️',psays:{k:'여기 어때요?',r:'ヨギ オッテヨ？',j:'ここはいかがですか？'},prompt:'「とてもきれいです！」と感想を言おう！',choices:[{t:'재미있어요! 😂',r:'チェミイッソヨ',c:false},{t:'무서워요 😰',r:'ムソウォヨ',c:false},{t:'너무 예뻐요! 😍',r:'ノム イェッポヨ',c:true}],ok:'와！（わあ！）上手に気持ちが伝えられたね！',ng:'예뻐요＝きれい！너무 예뻐요！'},
+  {sit:'✈️ 韓国の空港に到着！\nはじめて会ったガイドさんに挨拶しよう。',av:'🧑‍✈️',psays:{k:'안녕하세요! 만나서 반가워요!',r:'アンニョンハセヨ！マンナソパンガウォヨ！',j:'こんにちは！お会いできて嬉しいです！'},prompt:'「お会いできて嬉しいです」と返してみよう！',choices:[{t:'만나서 반가워요! 😊',r:'マンナソ パンガウォヨ',j:'お会いできて嬉しいです',c:true},{t:'안녕히 가세요! 🌅',r:'アンニョンヒ カセヨ',j:'さようなら（相手が去るとき）',c:false},{t:'오랜만이에요 ⏳',r:'オレンマニエヨ',j:'お久しぶりです',c:false}],ok:'완전 좋아요！（とても嬉しいです！）',ng:'それは「さようなら」だよ。만나서 반가워요！'},
+  {sit:'🏪 コンビニで値段を確認したい！\n店員さんに声をかけてみよう。',av:'🧑‍💼',psays:{k:'어서오세요!',r:'オソオセヨ！',j:'いらっしゃいませ！'},prompt:'「これはいくらですか？」と聞いてみよう！',choices:[{t:'이거 뭐예요? 🤔',r:'イゴ ムオエヨ',j:'これは何ですか？',c:false},{t:'이거 얼마예요? 💰',r:'イゴ オルマエヨ',j:'これはいくらですか？',c:true},{t:'영수증 주세요! 🧾',r:'ヨンスジュン チュセヨ',j:'領収書をください',c:false}],ok:'맞아요！（その通り！）上手！',ng:'「いくら」は얼마だよ！'},
+  {sit:'🏨 ホテルのフロントに到着！\n事前予約していることを伝えよう。',av:'👩‍💼',psays:{k:'안녕하세요!',r:'アンニョンハセヨ！',j:'こんにちは！'},prompt:'「部屋を予約しました」と伝えてみよう！',choices:[{t:'방 예약했습니다 🏨',r:'パン ヨヤクヘッスムニダ',j:'部屋を予約しました',c:true},{t:'와이파이 있나요? 📶',r:'ワイパイ インナヨ',j:'Wi-Fiはありますか？',c:false},{t:'체크아웃 할게요 🚪',r:'チェクアウト ハルケヨ',j:'チェックアウトをお願いします',c:false}],ok:'네！（はい！）完璧です！',ng:'「予約」は예약！방 예약했습니다！'},
+  {sit:'🚇 地下鉄の駅を探している！\n係員に場所を聞いてみよう。',av:'👮',psays:{k:'무엇을 도와드릴까요?',r:'ムオスル トワドゥリルカヨ？',j:'何かお手伝いできますか？'},prompt:'「地下鉄の駅はどこですか？」と聞こう！',choices:[{t:'지하철 역은 어디에 있나요? 🚇',r:'ジハチョル ヨゲン オディエ インナヨ',j:'地下鉄の駅はどこですか？',c:true},{t:'택시 좀 불러주세요 🚕',r:'テクシ ジョム プロジュセヨ',j:'タクシーを呼んでください',c:false},{t:'요금은 얼마예요? 💰',r:'ヨグムン オルマエヨ',j:'運賃はいくらですか？',c:false}],ok:'정확해요！（正確です！）',ng:'それはタクシーだよ！지하철 역은 어디？'},
+  {sit:'☕ カフェに入店！\nコーヒーを注文してみよう。',av:'🧑‍🍳',psays:{k:'어서오세요! 주문하시겠어요?',r:'オソオセヨ！チュムナシゲッソヨ？',j:'いらっしゃいませ！ご注文はいかがですか？'},prompt:'「コーヒーを1杯ください」と注文しよう！',choices:[{t:'이 자리 비어 있나요? 🪑',r:'イ チャリ ピオ インナヨ',j:'この席は空いていますか？',c:false},{t:'커피 한 잔 주세요 ☕',r:'コピ ハン チャン チュセヨ',j:'コーヒーを1杯ください',c:true},{t:'와이파이 비밀번호 알려주세요 📶',r:'ワイパイ ビミルボノ アリョジュセヨ',j:'Wi-Fiのパスワードを教えてください',c:false}],ok:'좋아요！（いいですね！）上手に注文できた！',ng:'それは席の質問だよ！커피 한 잔 주세요！'},
+  {sit:'🍽️ 食事を終えてお会計！\n店員さんに声をかけよう。',av:'🧑‍🍳',psays:{k:'맛있으셨나요?',r:'マシッスションナヨ？',j:'お食事はいかがでしたか？'},prompt:'「お会計をお願いします」と伝えよう！',choices:[{t:'메뉴판 주세요 📋',r:'メニュパン チュセヨ',j:'メニューをください',c:false},{t:'물 좀 주세요 💧',r:'ムル ジョム チュセヨ',j:'水をください',c:false},{t:'계산해 주세요 🧾',r:'ケサンヘ チュセヨ',j:'お会計をお願いします',c:true}],ok:'정말 잘했어요！（よくできました！）',ng:'それはメニューの注文だよ！계산해 주세요！'},
+  {sit:'🆘 体の具合が悪くなった！\n近くの人に助けを求めよう。',av:'👩',psays:{k:'괜찮아요?',r:'クェンチャナヨ？',j:'大丈夫ですか？'},prompt:'「病院はどこですか？」と聞こう！',choices:[{t:'도와주세요! 🆘',r:'トワジュセヨ',j:'助けてください！',c:false},{t:'병원이 어디예요? 🏥',r:'ビョンウォニ オディエヨ',j:'病院はどこですか？',c:true},{t:'아파요 💊',r:'アパヨ',j:'具合が悪いです',c:false}],ok:'맞아요！（正解！）병원＝病院！',ng:'「病院」は병원！병원이 어디예요？'},
+  {sit:'😍 観光スポットがとても美しかった！\n感想を伝えてみよう。',av:'🧑‍✈️',psays:{k:'여기 어때요?',r:'ヨギ オッテヨ？',j:'ここはいかがですか？'},prompt:'「とてもきれいです！」と感想を言おう！',choices:[{t:'재미있어요! 😂',r:'チェミイッソヨ',j:'楽しいです！',c:false},{t:'무서워요 😰',r:'ムソウォヨ',j:'怖いです',c:false},{t:'너무 예뻐요! 😍',r:'ノム イェッポヨ',j:'とてもきれいです！',c:true}],ok:'와！（わあ！）上手に気持ちが伝えられたね！',ng:'예뻐요＝きれい！너무 예뻐요！'},
 ];
 
 let curCat='挨拶',curPhrase=null,cleared={};
@@ -244,12 +244,53 @@ if(SR){
   recog.onresult=(ev)=>{const results=Array.from(ev.results[0]).map(r=>r.transcript.replace(/\s/g,''));showMicResult(judge(results),results[0]);};
 }
 
+
+function playCorrect(){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    // ピンポーン：2音で明るく
+    const notes=[523.25,783.99]; // ド・ソ
+    notes.forEach(function(freq,i){
+      const osc=ctx.createOscillator();
+      const gain=ctx.createGain();
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.type='sine';
+      osc.frequency.setValueAtTime(freq,ctx.currentTime+i*0.18);
+      gain.gain.setValueAtTime(0,ctx.currentTime+i*0.18);
+      gain.gain.linearRampToValueAtTime(0.45,ctx.currentTime+i*0.18+0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.18+0.35);
+      osc.start(ctx.currentTime+i*0.18);
+      osc.stop(ctx.currentTime+i*0.18+0.35);
+    });
+  }catch(e){}
+}
+
+function playWrong(){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    // ブブッ：低めの2音で残高不足っぽく
+    const notes=[311.13,233.08]; // 低めのレ・シ♭
+    notes.forEach(function(freq,i){
+      const osc=ctx.createOscillator();
+      const gain=ctx.createGain();
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.type='square';
+      osc.frequency.setValueAtTime(freq,ctx.currentTime+i*0.16);
+      gain.gain.setValueAtTime(0,ctx.currentTime+i*0.16);
+      gain.gain.linearRampToValueAtTime(0.18,ctx.currentTime+i*0.16+0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.16+0.22);
+      osc.start(ctx.currentTime+i*0.16);
+      osc.stop(ctx.currentTime+i*0.16+0.22);
+    });
+  }catch(e){}
+}
+
 function speak(txt){if(!txt)return;const u=new SpeechSynthesisUtterance(txt);u.lang='ko-KR';var isAndroid=/Android/i.test(navigator.userAgent);u.rate=isAndroid?1.6:.85;u.pitch=1.0;speechSynthesis.speak(u);}
 function judge(tr){if(!curPhrase)return false;const tg=curPhrase.s.map(s=>s.replace(/\s/g,''));return tr.some(t=>{const nt=t.replace(/\s/g,'');return tg.some(g=>nt.includes(g)||g.includes(nt));});}
 
 function showMicResult(correct,heard){
   const mb=document.getElementById('micBtn'),fb=document.getElementById('feedback'),st=document.getElementById('stars');
-  if(correct){mb.className='mic-btn success';mb.textContent='✅ 正解！';fb.textContent='すごい！上手に言えたよ！';fb.className='feedback good';st.innerHTML='⭐⭐⭐';cleared[curCat].add(curPhrase._idx);renderProgress();renderCards();setTimeout(()=>{mb.className='mic-btn';mb.textContent='🎤 もう一回！';},2000);}
+  if(correct){mb.className='mic-btn success';mb.textContent='✅ 正解！';playCorrect();fb.textContent='すごい！上手に言えたよ！';fb.className='feedback good';st.innerHTML='⭐⭐⭐';cleared[curCat].add(curPhrase._idx);renderProgress();renderCards();setTimeout(()=>{mb.className='mic-btn';mb.textContent='🎤 もう一回！';},2000);}
   else{mb.className='mic-btn';mb.textContent='🎤 もう一回！';fb.textContent=`もう一度！聞こえたのは：「${heard||'？'}」`;fb.className='feedback try';st.innerHTML='';}
 }
 
@@ -258,7 +299,7 @@ function setMode(m){
   document.getElementById('quizView').style.display=m==='quiz'?'block':'none';
   document.getElementById('btnLearn').className='mode-btn'+(m==='learn'?' active':'');
   document.getElementById('btnQuiz').className='mode-btn'+(m==='quiz'?' active':'');
-  if(m==='quiz'){qIdx=0;qScore=0;qAnswered=false;renderQuiz();}
+  if(m==='quiz'){qIdx=0;qScore=0;qAnswered=false;renderQuiz();setTimeout(function(){if(quizzes[0])speak(quizzes[0].psays.k);},800);}
 }
 
 function renderTabs(){
@@ -295,21 +336,20 @@ function renderQuiz(){
   if(qIdx>=quizzes.length){const pct=Math.round(qScore/quizzes.length*100);const msg=pct>=80?'完璧！🎉':pct>=50?'なかなか良いぞ！😊':'もう一回挑戦！💪';c.innerHTML=`<div class="finish"><div class="big">${pct>=80?'🏆':pct>=50?'⭐':'🔄'}</div><h3>${msg}</h3><p>${quizzes.length}問中 ${qScore}問 正解（${pct}%）</p><button class="retry-btn" onclick="qIdx=0;qScore=0;qAnswered=false;renderQuiz()">🔁 もう一回やる</button></div>`;return;}
   const q=quizzes[qIdx];
   const sh=[...q.choices].sort(()=>Math.random()-.5);
-  const ch=sh.map(x=>{const oi=q.choices.indexOf(x);return `<button class="choice-btn" onclick="answerQ(${oi},this,'${encodeURIComponent(x.t)}','${encodeURIComponent(x.r)}')">${x.t}<br><span style="font-size:9px;color:#FF5C5C;font-weight:700">${x.r}</span></button>`;}).join('');
+  const ch=sh.map(x=>{const oi=q.choices.indexOf(x);return `<button class="choice-btn" onclick="answerQ(${oi},this,'${encodeURIComponent(x.t)}','${encodeURIComponent(x.r)}')">${x.t}<br><span style="font-size:9px;color:#FF5C5C;font-weight:700">${x.r}</span><br><span class="choice-jp" style="font-size:10px;color:#888;font-weight:700;display:none">${x.j||''}</span></button>`;}).join('');
   c.innerHTML=`<div class="quiz-hdr"><h2>💬 会話クイズ ${qIdx+1}/${quizzes.length}</h2><p>何と言う？選んでみよう！</p></div><div class="sit-box"><strong>📍 状況</strong>${q.sit}</div><div class="chat-win-label">🇰🇷 カンナムくん</div><div class="chat-win" id="chatWin"><div class="brow"><div class="avatar av-partner">${q.av}</div><div class="bubble left"><span class="bko">${q.psays.k}</span><span class="bro">${q.psays.r}</span><span class="bjp">${q.psays.j}</span><button class="bspeak" onclick="speak('${q.psays.k.replace(/'/g,"\\'")}')">🔊</button></div></div><div class="brow right" id="myRow" style="display:none"><div class="bubble right" id="myBubble"></div><div class="avatar av-me">😊</div></div></div><div style="font-size:11px;color:#888;font-weight:700;margin-bottom:.5rem;text-align:center">${q.prompt}</div><div class="choices" id="choicesDiv">${ch}</div><div class="qres" id="qRes"></div><button class="next-btn" id="nxtBtn" onclick="nextQ()">次へ →</button><div class="qscore">スコア：${qScore} / ${qIdx} 正解</div>`;
 }
 
 function answerQ(idx,btn,encT,encR){
   if(qAnswered)return;qAnswered=true;
   const q=quizzes[qIdx],x=q.choices[idx],t=decodeURIComponent(encT),r=decodeURIComponent(encR);
-  document.querySelectorAll('.choice-btn').forEach(b=>b.disabled=true);
-  if(x.c){btn.className='choice-btn correct';qScore++;document.getElementById('qRes').textContent='⭐ '+q.ok;document.getElementById('qRes').className='qres good';speak(x.t.replace(/[^\uAC00-\uD7A3\s]/g,'').trim());}
-  else{btn.className='choice-btn wrong';document.querySelectorAll('.choice-btn').forEach(b=>{const tx=b.textContent.split('\n')[0];const orig=q.choices.find(z=>z.t===tx);if(orig&&orig.c)b.className='choice-btn correct';});document.getElementById('qRes').textContent='😅 '+q.ng;document.getElementById('qRes').className='qres bad';var wrongKo=t.replace(/[^가-힣\s]/g,'').trim();if(wrongKo)speak(wrongKo);}
+  document.querySelectorAll('.choice-btn').forEach(b=>{b.disabled=true;const jp=b.querySelector('.choice-jp');if(jp)jp.style.display='block';});
+  if(x.c){btn.className='choice-btn correct';qScore++;document.getElementById('qRes').textContent='⭐ '+q.ok;document.getElementById('qRes').className='qres good';playCorrect();var myKo=x.t.replace(/[^\uAC00-\uD7A3\s]/g,'').trim();if(myKo)speak(myKo);}
+  else{btn.className='choice-btn wrong';document.querySelectorAll('.choice-btn').forEach(b=>{const tx=b.textContent.split('\n')[0];const orig=q.choices.find(z=>z.t===tx);if(orig&&orig.c)b.className='choice-btn correct';});document.getElementById('qRes').textContent='😅 '+q.ng;document.getElementById('qRes').className='qres bad';playWrong();var wrongKo=t.replace(/[^가-힣\s]/g,'').trim();if(wrongKo)speak(wrongKo);}
   const mr=document.getElementById('myRow'),mb2=document.getElementById('myBubble');mr.style.display='flex';mb2.innerHTML=`<span class="bko" style="color:#555">${t}</span><span class="bro">${r}</span><button class="bspeak" onclick="speak('${t.replace(/[^\uAC00-\uD7A3\s]/g,'').trim()}')">🔊</button>`;
   document.getElementById('nxtBtn').style.display='block';
-  if(qIdx<quizzes.length){setTimeout(function(){speak(quizzes[qIdx].psays.k);},400);}
 }
-function nextQ(){qIdx++;qAnswered=false;renderQuiz();}
+function nextQ(){qIdx++;qAnswered=false;renderQuiz();setTimeout(function(){if(qIdx<quizzes.length){speak(quizzes[qIdx].psays.k);}},800);}
 
 renderAll();
 selectPhrase(P['挨拶'][0],0);
