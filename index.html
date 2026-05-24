@@ -245,6 +245,47 @@ if(SR){
 }
 
 
+
+function playKirakira(){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    // キラキラ：高めの音が連続して輝く感じ
+    const notes=[1046.5,1318.5,1568,2093,1568,1318.5];
+    notes.forEach(function(freq,i){
+      const osc=ctx.createOscillator();
+      const gain=ctx.createGain();
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.type='sine';
+      osc.frequency.setValueAtTime(freq,ctx.currentTime+i*0.08);
+      gain.gain.setValueAtTime(0,ctx.currentTime+i*0.08);
+      gain.gain.linearRampToValueAtTime(0.3,ctx.currentTime+i*0.08+0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.08+0.18);
+      osc.start(ctx.currentTime+i*0.08);
+      osc.stop(ctx.currentTime+i*0.08+0.18);
+    });
+  }catch(e){}
+}
+
+function playPoyon(){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    // ポヨン：音程が下がってまた少し上がる弾む感じ
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.connect(gain);gain.connect(ctx.destination);
+    osc.type='sine';
+    osc.frequency.setValueAtTime(520,ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(200,ctx.currentTime+0.25);
+    osc.frequency.exponentialRampToValueAtTime(280,ctx.currentTime+0.38);
+    osc.frequency.exponentialRampToValueAtTime(180,ctx.currentTime+0.55);
+    gain.gain.setValueAtTime(0,ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.35,ctx.currentTime+0.03);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.6);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime+0.6);
+  }catch(e){}
+}
+
 function playCorrect(){
   try{
     const ctx=new(window.AudioContext||window.webkitAudioContext)();
@@ -290,8 +331,8 @@ function judge(tr){if(!curPhrase)return false;const tg=curPhrase.s.map(s=>s.repl
 
 function showMicResult(correct,heard){
   const mb=document.getElementById('micBtn'),fb=document.getElementById('feedback'),st=document.getElementById('stars');
-  if(correct){mb.className='mic-btn success';mb.textContent='✅ 正解！';playCorrect();fb.textContent='すごい！上手に言えたよ！';fb.className='feedback good';st.innerHTML='⭐⭐⭐';cleared[curCat].add(curPhrase._idx);renderProgress();renderCards();setTimeout(()=>{mb.className='mic-btn';mb.textContent='🎤 もう一回！';},2000);}
-  else{mb.className='mic-btn';mb.textContent='🎤 もう一回！';fb.textContent=`もう一度！聞こえたのは：「${heard||'？'}」`;fb.className='feedback try';st.innerHTML='';}
+  if(correct){mb.className='mic-btn success';mb.textContent='✅ 正解！';playKirakira();fb.textContent='すごい！上手に言えたよ！';fb.className='feedback good';st.innerHTML='⭐⭐⭐';cleared[curCat].add(curPhrase._idx);renderProgress();renderCards();setTimeout(()=>{mb.className='mic-btn';mb.textContent='🎤 もう一回！';},2000);}
+  else{mb.className='mic-btn';mb.textContent='🎤 もう一回！';fb.textContent=`もう一度！聞こえたのは：「${heard||'？'}」`;fb.className='feedback try';st.innerHTML='';playPoyon();}
 }
 
 function setMode(m){
